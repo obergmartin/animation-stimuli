@@ -2,6 +2,7 @@
  *  Animation generation by Martin Oberg 
  *  December 2022
  *
+ * Requires the library: Box2D for Processing 
  * The physics engine is Jbox2d.  Code is adapted by many examples in:
  * The Nature of Code, http://natureofcode.com
  * It is a Java/Processing wrapper for box2d: https://box2d.org/
@@ -32,7 +33,6 @@ ArrayList<Particle> particles;
 boolean recording = false;
 //boolean recording = true;
 
-
 color c1 = color(126,  126 ,225);
 color c2 = color(249, 255 ,52);
 color c3 = color(255,  177, 108);
@@ -57,7 +57,6 @@ int velocityIterations;
 int positionIterations;
 int n_frames;
 
-
 // For bodies
 Body body1;
 Body body2;
@@ -70,8 +69,6 @@ float h_px;
 
 // global friction variable so all animation s behave similarly
 float gl_friction = 0.05;
-
-
 
 
 /****************************************
@@ -104,9 +101,9 @@ void setup() {
   
   // Choose which animation to run
   //negative1();
-  //positive2();
+  positive2();
   //positive3();
-  negative2();
+  //negative2();
   
   // location to save frames
   String path = sketchPath("output/");
@@ -147,13 +144,17 @@ void draw() {
     wall.display();
   }
   
-  saveFrame("output/frame_####.tif");
+  if (recording) doSaveFrame();
   
   // Stop after 600 frames (10s @ 60fps) 
   n_frames +=1;
   if (n_frames > 600) {
     exit();
   }
+}
+
+void doSaveFrame() {
+  saveFrame("output/frame_####.tif");
 }
 
 

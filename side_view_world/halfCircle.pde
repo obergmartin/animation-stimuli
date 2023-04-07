@@ -10,7 +10,7 @@ class HalfCircleShape extends Particle {
     //p_shape = makeHalfCircleShape(w, h, c_);
   }
   
-   void display() {    
+   void display() {   
     Vec2 pos = box2d.getBodyPixelCoord(body);
     float a = body.getAngle();
 
